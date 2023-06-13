@@ -25,4 +25,5 @@ Resetar diretório
 	git add .
 	git reset --hard HEAD
 	git pull
-	git checkout 2023-05-15
+	
+	git checkout master
