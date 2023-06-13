@@ -1,0 +1,28 @@
+*** Git config ****
+
+Configurando conta do usuário:
+  git config --global user.email "email_user@dominio.com"
+  git config --global user.name "Nome Sobrenome"
+
+Enviar projeto para um repositório
+	git remote add origin https://github.com/ElitonCamargo/api_LojaVeiculo_php.git
+	git branch -M master
+	git push -u origin master
+
+Adicionar o que foi feito para o repositório local
+	git add .
+
+Enviar o repositório local para o Github
+	git push
+
+Criar branch
+	git branch nome_branch
+	
+Mudar de branch
+	git checkout nome_branch
+
+Resetar diretório 
+	git add .
+	git reset --hard HEAD
+	git pull
+	git checkout 2023-05-15
