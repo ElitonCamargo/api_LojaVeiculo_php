@@ -1,5 +1,5 @@
 <?php
-//header('Content-type: application/json');
+header('Content-type: application/json');
 $method = $_SERVER['REQUEST_METHOD'];
 $dadosEnviados = file_get_contents('php://input');
 $dadosEnviados = json_decode($dadosEnviados, true);
