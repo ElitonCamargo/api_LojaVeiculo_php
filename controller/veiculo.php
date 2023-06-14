@@ -1,8 +1,10 @@
 <?php
 require_once 'model/Veiculo.php';
 $veiculo = new Veiculo();
+$method = GET['method'];
 switch($method){
     case "GET":{
+        var_dump($rota);
         $lista_veiculos = $veiculo->consultar();
         $retorno = [
             'result'=>true,
