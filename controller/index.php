@@ -16,6 +16,11 @@ $rota = GET['url'][0];
 if(array_key_exists($rota,$rotas)){
     require_once $rotas[$rota];
 }
-else{
+else{    
+    $codigo_resposta = 404;
+    $erro = [
+        'result'=>false,
+        'erro'  => 'Erro: 404 - Arquivo não encontrado'
+    ];
     require_once 'erro404.php';
 }

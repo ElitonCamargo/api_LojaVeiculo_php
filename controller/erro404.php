@@ -1,4 +1,3 @@
 <?php
-echo json_encode(
-    ["arquivo"=>"não encontrado"]
-);
+http_response_code($codigo_resposta);
+echo json_encode($erro);
