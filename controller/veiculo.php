@@ -1,16 +1,25 @@
 <?php
 require_once 'model/Veiculo.php';
+require_once 'view/Veiculo.php';
 $veiculo = new Veiculo();
-$method = GET['method'];
-switch($method){
+$viewVeiculo = new ViewVeiculo();
+
+array_shift($url);
+switch($method){    
     case "GET":{
-        var_dump($rota);
-        $lista_veiculos = $veiculo->consultar();
-        $retorno = [
-            'result'=>true,
-            'dados' =>$lista_veiculos
-        ];
-        echo json_encode($retorno);
+        if(count($url)){
+            if($url[0] == "modelo"){
+                $veiculos = $veiculo->consultar(@$url[1]);
+                $viewVeiculo->listarVeiculos($veiculos);
+            }
+            else if($url[0] == "id"){
+                echo json_encode(["Info"=>"Ainda não definido"]);
+            }
+        }
+        else{
+            $veiculos = $veiculo->consultar();
+            $viewVeiculo->listarVeiculos($veiculos);
+        }
     }
     break;
     case "POST":{
@@ -30,12 +39,3 @@ switch($method){
     }
     break;
 }
-
-// echo json_encode(
-//     [
-//         "arquivo"=>"veículo",
-//         "method" =>$method,
-//         "dadosRecebidos"=>$dadosRecebidos,
-//         "url"=>$url    
-//     ]
-// );
