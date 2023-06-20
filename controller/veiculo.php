@@ -13,7 +13,13 @@ switch($method){
                 $viewVeiculo->listarVeiculos($veiculos);
             }
             else if($url[0] == "id"){
-                echo json_encode(["Info"=>"Ainda não definido"]);
+                $id = @$url[1];
+                echo json_encode(
+                    [
+                        "id"=>$id,
+                        "Info"=>"Ainda não definido"
+                    ]
+                );
             }
         }
         else{
