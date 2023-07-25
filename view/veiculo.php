@@ -1,26 +1,41 @@
 <?php
 class ViewVeiculo{
-    private $retorno = [];
 
-    private function limparRetorno(){
-        $this->retorno["result"] = false;
-        $this->retorno["dados"] = [];
-        $this->retorno["itens"] = 0;
-        unset($this->retorno['info']);
+    public function exibir($retorno){
+        echo json_encode($retorno);
     }
-
-    public function listarVeiculos($veiculos){
-        $this->limparRetorno();
+    
+    public function exibirVeiculos($veiculos){
         if($veiculos){
-            $this->retorno["result"] = true;
-            $this->retorno["dados"] = $veiculos;
-            $this->retorno["itens"] = count($veiculos);
             http_response_code(200);
+            $retorno["result"] = true;
+            $retorno["dados"] = $veiculos;
+            $retorno["itens"] = count($veiculos);
         }
         else{
             http_response_code(404);
-            $this->retorno['info'] = "Nenhum resultado correspondente para esta consulta.";
+            $retorno["result"] = false;
+            $retorno["dados"] = [];
+            $retorno["itens"] = 0;
+            $retorno['info'] = "Nenhum resultado correspondente para esta consulta.";
         }
-        echo json_encode($this->retorno);
+        $this->exibir($retorno);
+    }
+
+    public function exibirVeiculo($veiculo){
+        if($veiculo){
+            http_response_code(200);
+            $retorno["result"] = true;
+            $retorno["dados"] = $veiculo;
+            $retorno["itens"] = 1;
+        }
+        else{
+            http_response_code(404);
+            $retorno["result"] = false;
+            $retorno["dados"] = '';
+            $retorno["itens"] = 0;
+            $retorno['info'] = "Nenhum resultado correspondente para esta consulta.";
+        }
+        $this->exibir($retorno);
     }
 }

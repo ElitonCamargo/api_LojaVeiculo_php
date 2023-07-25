@@ -2,7 +2,7 @@
 # Os dados de requisição enviados para a API estão sendo salvos dentro da variáveis [$method, $dadosRecebidos, $url]
 $method = $_SERVER['REQUEST_METHOD'];
 $dadosRecebidos = json_decode(file_get_contents('php://input'));
-$url = explode('/', $_GET['url']);
+$url = explode('/', @$_GET['url']);
 
 # Definindo todos as contas possíveis da aplicação;
 $rotas = [
@@ -20,7 +20,7 @@ else{
     $codigo_resposta = 404;
     $erro = [
         'result'=>false,
-        'erro'  => 'Erro: 404 - Arquivo não encontrado'
+        'erro'  => 'Erro: 404 - Recurso não encontrado'
     ];
-    require_once 'erro404.php';
+    require_once 'view/erro404.php';
 }

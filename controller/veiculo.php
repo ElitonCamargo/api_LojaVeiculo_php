@@ -1,32 +1,31 @@
 <?php
 require_once 'model/Veiculo.php';
 require_once 'view/Veiculo.php';
-$veiculo = new Veiculo();
-$viewVeiculo = new ViewVeiculo();
 
+# Removendo 'veiculo' da array $url;
 array_shift($url);
-switch($method){    
-    case "GET":{
-        if(count($url)){
-            if($url[0] == "modelo"){
-                $veiculos = $veiculo->consultar(@$url[1]);
-                $viewVeiculo->listarVeiculos($veiculos);
-            }
-            else if($url[0] == "id"){
-                $id = @$url[1];
-                echo json_encode(
-                    [
-                        "id"=>$id,
-                        "Info"=>"Ainda não definido"
-                    ]
-                );
-            }
-        }
-        else{
-            $veiculos = $veiculo->consultar();
-            $viewVeiculo->listarVeiculos($veiculos);
-        }
+
+function get($consulta, $valor=''){
+    $veiculo = new Veiculo();
+    $viewVeiculo = new ViewVeiculo();
+    if($consulta == "id"){
+        $veiculo = $veiculo->consultarPorId($valor);
+        $viewVeiculo->exibirVeiculo($veiculo);        
     }
+    elseif($consulta == "modelo"){
+        $veiculos = $veiculo->consultar($valor);
+        $viewVeiculo->exibirVeiculos($veiculos);
+    }
+    else{
+        $veiculos = $veiculo->consultar();
+        $viewVeiculo->exibirVeiculos($veiculos);
+    }
+
+} 
+
+
+switch($method){    
+    case "GET":get(@$url[0],@$url[1]);
     break;
     case "POST":{
         echo json_encode(["method"=>"POST"]);

@@ -121,12 +121,7 @@ class Veiculo {
             $cx_declarada->bindParam('id', $id);          
             $cx_declarada->execute();
             $cx_declarada->setFetchMode(PDO::FETCH_CLASS, __CLASS__);
-            $v = $cx_declarada->fetch();
-            if($v){
-                $this->carregar($v);
-                return true;
-            }
-            return false;
+            return $cx_declarada->fetch();           
         } catch (\PDOException $e) {
             $this->erro = "Erro ao consultar categoria: " . $e->getMessage();
             return false;
