@@ -25,7 +25,7 @@ class Veiculo {
         return (new BaseDeDados())->getConexao();
     }
      
-    public function cadastrar(): bool {
+    public function cadastrar(): bool | Veiculo {
         try {
             $cmdSql = 'INSERT INTO veiculo(modelo,ano_fabricacao,ano_modelo,cor,num_portas,foto,categoria_id,montadora_id,tipo_cambio,tipo_direcao) VALUES (:modelo,:ano_fabricacao,:ano_modelo,:cor,:num_portas,:foto,:categoria_id,:montadora_id,:tipo_cambio,:tipo_direcao)';
             $pdo = $this->cx();
