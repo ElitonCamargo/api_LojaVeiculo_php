@@ -1,5 +1,5 @@
 # Impede a indexação de diretórios; 
-Options -Indexes
+# Options -Indexes
 # Ativa o módulo Rewrite, que faz a reescrita de URL.
 RewriteEngine on
 # Caso não exista um arquivo ou diretório especifico na url o redirecionamento ocorrerá.
