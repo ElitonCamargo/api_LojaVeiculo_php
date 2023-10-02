@@ -25,3 +25,4 @@ else{
     ];
     require_once 'view/erro404.php';
 }
+
